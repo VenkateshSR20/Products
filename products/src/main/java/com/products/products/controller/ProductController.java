@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+//Product Controller class
 @RestController
 @RequestMapping("/api")
 public class ProductController {
