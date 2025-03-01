@@ -67,6 +67,11 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
 
+    @Operation(summary = "Delete product", tags = {"products", "Delete"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = Orders.class), mediaType = "application/json") }),
+    @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @DeleteMapping("/Delete/{id}")
     private ResponseEntity<String>  deleteProduct(@PathVariable("id") long id) {
         if(productService.deleteOrder(id)) {
@@ -76,11 +81,21 @@ public class ProductController {
         }
     }
 
+    @Operation(summary = "List Products", tags = {"products", "List"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = Orders.class), mediaType = "application/json") }),
+    @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/View")
     private ResponseEntity<List<Orders>> getAllOrders(){
         return ResponseEntity.ok(productService.getAllOrders());
     }
 
+    @Operation(summary = "List product by ID", tags = {"products", "listbyID"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = Orders.class), mediaType = "application/json") }),
+    @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping("/View/{id}")
     private ResponseEntity<Orders> getProductById(@PathVariable Long id) {
         Optional<Orders> order = productService.getOrderById(id);
