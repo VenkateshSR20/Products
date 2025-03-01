@@ -1,20 +1,13 @@
 package com.products.products;
 
-import com.products.ProductService;
-import com.products.products.repositories.Orders;
-import org.aspectj.weaver.ast.Or;
+import com.products.products.Service.ProductService;
+import com.products.products.repositories.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import static org.junit.jupiter.api.Assertions.*;
-import org.mockito.MockitoAnnotations;
-
-import java.util.List;
 
 public class ProductServiceTest {
 
-    private  OrderRepository orderRepository;
+    private OrderRepository orderRepository;
     private ProductService productService;
 
     @BeforeEach

@@ -1,6 +1,6 @@
-package com.products;
+package com.products.products.Service;
 
-import com.products.products.OrderRepository;
+import com.products.products.repositories.OrderRepository;
 import com.products.products.repositories.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

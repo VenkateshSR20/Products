@@ -1,7 +1,7 @@
 package com.products.products.controller;
 
-import com.products.ProductService;
-import com.products.products.OrderRepository;
+import com.products.products.Service.ProductService;
+import com.products.products.repositories.OrderRepository;
 import com.products.products.repositories.Orders;
 import io.swagger.v3.oas.annotations.Operation;
 
