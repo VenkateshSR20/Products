@@ -52,6 +52,8 @@ public class UserController {
     @PostMapping("/Createlogin")
     private ResponseEntity<Users> createEncPassword(@RequestBody Users users) {
        // Users saveuser =
+
+        return null;
     }
     //Insert into DB with user name and password and store in DB encrypt of password
 
