@@ -52,10 +52,12 @@ public class UserController {
     @PostMapping("/Createlogin")
     private ResponseEntity<Users> createEncPassword(@RequestBody Users users) {
        // Users saveuser =
+        //Get value here and encry the pwd and store.
 
         return null;
     }
     //Insert into DB with user name and password and store in DB encrypt of password
+    //Logic security config
 
 
 }
