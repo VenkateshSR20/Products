@@ -91,11 +91,12 @@
 			<version>2.8.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/at.favre.lib/bcrypt -->
+		<!-- https://mvnrepository.com/artifact/at.favre.lib/bcrypt
+		We can do this optional thing is spring security if we use spring security by default encrypt will be coming-->
 		<dependency>
-			<groupId>at.favre.lib</groupId>
-			<artifactId>bcrypt</artifactId>
-			<version>0.10.2</version>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
 		</dependency>
 
 
