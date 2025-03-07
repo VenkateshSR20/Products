@@ -77,6 +77,9 @@ public class UserController {
     //Insert into DB with user name and password and store in DB encrypt of password
     //Logic security config
 
+    //To do -User login end point call, if give user name and pwd then get uname and pwd from DB
+    //THen take the pwd use decrypt and bring to text form. then check if it matches with user pwd.
+    //Give in Json
     public static String encryptPassword(String plainpassword){
         return BCrypt.hashpw(plainpassword, BCrypt.gensalt(12));
     }
