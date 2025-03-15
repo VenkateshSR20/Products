@@ -13,6 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -29,6 +30,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public UserController(UserRepository repository) {
         this.userRepository = repository;
@@ -76,14 +81,48 @@ public class UserController {
     }
     //Insert into DB with user name and password and store in DB encrypt of password
     //Logic security config
-
-    //To do -User login end point call, if give user name and pwd then get uname and pwd from DB
-    //THen take the pwd use decrypt and bring to text form. then check if it matches with user pwd.
-    //Give in Json
     public static String encryptPassword(String plainpassword){
         return BCrypt.hashpw(plainpassword, BCrypt.gensalt(12));
     }
 
+    //To do -User login end point call, if give user name and pwd then get uname and pwd from DB
+    //THen take the pwd use decrypt and bring to text form. then check if it matches with user pwd.
+    //Give in Json
+    @Operation(summary = "Get credentials", tags = { "login", "get"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = Users.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @PostMapping("/PasswordDecrypt")
+    private ResponseEntity<Users> decryptPassword(@RequestBody Users users){
 
+        String encryptedpassword = users.getPassword();
+        String username = users.getUsername();
+        String hashedPasswordFromDB = getPasswordFromDatabase(username);
+        //Because BCrypt uses a hashing function, not encryption.
+        //Hashing is one-way, meaning you can only verify if two values match — you cannot retrieve the original password.
+        //String hashedPassword = passwordE(users.getPassword());
+        //users
+        return null;
+    }
 
+    private String getPasswordFromDatabase(String username) {
+
+        String hashedPassword = passwordEncoder.encode(username.getPassword());
+        users.setPassword(hashedPassword);
+        //Spring boot security - Password encoder - add pom.-
+        //Use that password verifier - user detail, it self decode.
+        //page64(encoder) @bean, it will do password verification process
+    }
+
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+//
+//    public void createUser(User user) {
+//        String hashedPassword = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hashedPassword);
+//        // Save the user to the database
+//    }
+
+    //Spring data MQ, Rabbit MQ
 }
